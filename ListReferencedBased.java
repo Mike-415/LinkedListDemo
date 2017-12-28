@@ -3,23 +3,17 @@ import java.util.Stack;
 
 public class ListReferencedBased implements ListInterface
 {
-
-    // reference to linked list of items
-
     private Node head;
-
-
-    // definitions of constructors and methods
 
     public ListReferencedBased()
     {
         head = null;
-    }  // end default constructor
+    }  
 
     public boolean isEmpty()
     {
         return (head == null);
-    }
+    }//isEmpty()
 
     @Override
     public int size()
@@ -28,7 +22,6 @@ public class ListReferencedBased implements ListInterface
         int counter = 0;
         if(isEmpty())
         {
-
             return counter;
         }
         else
@@ -49,43 +42,39 @@ public class ListReferencedBased implements ListInterface
             }
         }
         return counter;
-    } // end size
+    } //size()
 
 
+    
+    // Locates a specified node in a linked list.
+    // Precondition:  index is the number of the desired
+    //  node.  Assumes that 1 <= index <= numItems+1
+    // Post-condition:  Returns a reference to the desired
+    //  node.
     private Node find(int index)
     {
-        //———————————————————
-        // Locates a specified node in a linked list.
-        // Precondition:  index is the number of the desired
-        //  node.  Assumes that 1 <= index <= numItems+1
-        // Post-condition:  Returns a reference to the desired
-        //  node.
-        //———————————————————
-
         Node curr = head;
         for (int skip = 0;  skip < index;  skip++)
         {
             curr = curr.next;
         } // end for
         return curr;
-    } // end find
+    } //find()
 
     @Override
     public Comparable get(int index) throws ListIndexOutOfBoundsException
     {
         if (index >= 0 && index <= size())
         {
-            // get reference to node, then data in node
             Node curr = find(index);
             Comparable dataItem = curr.item;
             return dataItem;
         }
         else
-
         {
             throw new ListIndexOutOfBoundsException("List index out of bounds on get()");
-        } // end if
-    } // end get
+        } 
+    }//get()
 
 
     @Override
@@ -95,31 +84,21 @@ public class ListReferencedBased implements ListInterface
         {
             if (index == 0)
             {
-                // insert the new node containing item at
-                // beginning of list
                 Node newNode = new Node(item, head);
                 head = newNode;
-//                System.out.println("in add(), first node");
             }
             else
             {
                 Node prev = find(index-1);
-
-                // insert the new node containing item after
-                // the node that prev references
                 Node newNode = new Node(item, prev.next);
                 prev.next = newNode;
-//                System.out.println("in add(), other node added");
             }  // end if
         }
         else
         {
-//            System.out.println("About to throw error.");
-//            System.out.println("index: "+index);
-//            System.out.println("size(): "+size());
             throw new ListIndexOutOfBoundsException("List index out of bounds on add()");
-        } // end if
-    } // end add
+        } 
+    }//add()
 
     @Override
     public void remove(int index) throws ListIndexOutOfBoundsException
@@ -128,37 +107,30 @@ public class ListReferencedBased implements ListInterface
         {
             if (index == 0)
             {
-                // delete the first node from the list
                 head = head.next;
             }
             else
             {
                 Node prev = find(index-1);
-                // delete the node after the node that prev
-                // references, save reference to node
                 Node curr = prev.next;
                 prev.next = curr.next;
-            } // end if
+            }
         }
         else
         {
             throw new ListIndexOutOfBoundsException("List index out of bounds on remove()");
-        } // end if
-    } // end remove
+        } 
+    }//remove()
 
     @Override
     public void removeAll()
     {
-        // setting head to null causes list to be
-        // unreachable and thus marked for garbage
-        // collection
         head = null;
-    } // end removeAll
+    }//removeAll()
 
     @Override
     public boolean isSorted()
     {
-        //TODO: Find out WHERE && HOW to implement compareTo using cs211s and cs111c material.
         boolean sortFlag = true;
         Node current = head;
         while(current.next != null)
@@ -170,7 +142,7 @@ public class ListReferencedBased implements ListInterface
             current = current.next;
         }
         return sortFlag;
-    }
+    }//isSorted()
 
     @Override
     public void reverseList()
@@ -190,7 +162,7 @@ public class ListReferencedBased implements ListInterface
             add(position, nodeStack.pop().item);
             position++;
         }
-    }
+    }//reverseList()
 
     @Override
     public String toString()
@@ -205,7 +177,7 @@ public class ListReferencedBased implements ListInterface
         str += current.item+" ";
         System.out.println("size: "+size());
         return str;
-    }
+    }//toString()
 
 
 }
