@@ -1,10 +1,5 @@
 public interface ListInterface
 {
-    // ********************************
-    //  Inteface for the ADT List
-    // ********************************
-
-    // list operations:
     boolean isEmpty();
     int size();
     void add(int index, Comparable item) throws ListIndexOutOfBoundsException;
@@ -13,7 +8,4 @@ public interface ListInterface
     void removeAll();
     boolean isSorted();
     void reverseList();
-
-
-
 }
