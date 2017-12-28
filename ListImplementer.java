@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
-
 public class ListImplementer
 {
     public static void displayOptions()
     {
-        System.out.println("1.) Add item");
+        System.out.println("1.) Add an item(integer)");
         System.out.println("2.) Remove item");
         System.out.println("3.) Reverse list");
         System.out.println("4.) Exit program\n");
